@@ -13,7 +13,7 @@ exports.createNew = function(name,callback){
         db.run("CREATE TABLE johntime (disNAM TEXT, disID TEXT, timestamp NUMERIC, claim NUMERIC, actual NUMERIC)");
         db.run("CREATE TABLE memes (disNAM TEXT, disID NUMERIC, timestamp NUMERIC, url TEXT, votes NUMERIC)");
 
-        db.run("CREATE TABLE events (disNAM TEXT, disID TEXT, timestamp NUMERIC, name TEXT, frequency TEXT, notify_day TEXT, notify_frequency TEXT, default_times TEXT, invites TEXT, channelID TEXT, responses TEXT)");
+        db.run("CREATE TABLE events (disNAM TEXT, disID TEXT, timestamp NUMERIC, event_name TEXT, data TEXT)");
 
         /*
 
@@ -63,6 +63,18 @@ exports.init = function(name,callback){
 
 exports.run = function(query,callback){
     db.run(query,callback2)
+    function callback2(err,row){
+        if(err){
+            logger.log('error',err);
+        }
+        if(typeof callback != 'undefined'){
+            callback(err,row)
+        }
+    }
+}
+
+exports.runSecure = function(query,data,callback){
+    db.run(query,data,callback2)
     function callback2(err,row){
         if(err){
             logger.log('error',err);
