@@ -13,7 +13,7 @@ exports.createNew = function(name,callback){
         db.run("CREATE TABLE johntime (disNAM TEXT, disID TEXT, timestamp NUMERIC, claim NUMERIC, actual NUMERIC)");
         db.run("CREATE TABLE memes (disNAM TEXT, disID NUMERIC, timestamp NUMERIC, url TEXT, votes NUMERIC)");
 
-        db.run("CREATE TABLE events (disNAM TEXT, disID TEXT, timestamp NUMERIC, event_name TEXT, data TEXT)");
+        db.run("CREATE TABLE events (disNAM TEXT, disID TEXT, timestamp NUMERIC, event_name TEXT, expired INT, data TEXT)");
 
         /*
 
